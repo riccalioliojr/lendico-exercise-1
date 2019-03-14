@@ -12,7 +12,7 @@ public class Response {
     private BigDecimal principal;
     private BigDecimal remainingOutstandingPrincipal;
 
-    public Response(PaymentPlan paymentPlan) {
+    public Response(final PaymentPlan paymentPlan) {
         this.borrowerPaymentAmount = paymentPlan.getBorrowerPaymentAmount();
         this.date = paymentPlan.getDate();
         this.initialOutstandingPrincipal = paymentPlan.getInitialOutstandingPrincipal();
@@ -22,26 +22,26 @@ public class Response {
     }
 
     public BigDecimal getBorrowerPaymentAmount() {
-        return this.borrowerPaymentAmount;
+        return borrowerPaymentAmount;
     }
 
     public String getDate() {
-        return this.date;
+        return date;
     }
 
     public BigDecimal getInitialOutstandingPrincipal() {
-        return this.initialOutstandingPrincipal;
+        return initialOutstandingPrincipal;
     }
 
     public BigDecimal getInterest() {
-        return this.interest;
+        return interest;
     }
 
     public BigDecimal getPrincipal() {
-        return this.principal;
+        return principal;
     }
 
     public BigDecimal getRemainingOutstandingPrincipal() {
-        return this.remainingOutstandingPrincipal;
+        return remainingOutstandingPrincipal;
     }
 }

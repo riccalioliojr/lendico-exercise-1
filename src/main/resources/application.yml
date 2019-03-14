@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: plan-generator
+    name: payment-plan-generator
   jackson:
     serialization:
       indent_output: true

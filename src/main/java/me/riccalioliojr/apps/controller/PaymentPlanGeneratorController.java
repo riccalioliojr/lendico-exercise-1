@@ -2,7 +2,7 @@ package me.riccalioliojr.apps.controller;
 
 import me.riccalioliojr.apps.model.Request;
 import me.riccalioliojr.apps.model.Response;
-import me.riccalioliojr.apps.service.PlanGeneratorService;
+import me.riccalioliojr.apps.service.PaymentPlanGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/generate-plan")
-public class PlanGeneratorController {
+@RequestMapping(value = "generate-plan")
+public class PaymentPlanGeneratorController {
 
     @Autowired
-    private PlanGeneratorService planGeneratorService;
+    private PaymentPlanGeneratorService paymentPlanGeneratorService;
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.OK)
-    public static List<Response> post(@RequestBody Request request) {
-        return PlanGeneratorService.generatePlan(request);
+    public List<Response> generatePaymentPlan(@RequestBody final Request request) {
+        return paymentPlanGeneratorService.generatePaymentPlan(request);
     }
 }

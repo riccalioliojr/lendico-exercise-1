@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PlanGeneratorApp {
+public class PaymentPlanGeneratorApp {
     public static void main(String[] args) {
-        SpringApplication.run(PlanGeneratorApp.class, args);
+        SpringApplication.run(PaymentPlanGeneratorApp.class, args);
     }
 }
