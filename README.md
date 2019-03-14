@@ -4,9 +4,9 @@
 
 1. Clone the repository.
 2. Using the command line, go inside the directory of the repository.
-3. Execute `mvn clean spring-boot:run`. Make sure port 8080 is not in use. If it cannot be freed, please replace the port number in `application.yml`.
-4. Test using any REST API testing tools, e.g. Postman, by POSTing to localhost:8080/generate-plan using the example payload below.
-If the port number was replaced, use it instead.
+3. Execute `mvn clean spring-boot:run`. If port 8080 is in use, replace the port number in `application.yml`.
+4. Test using any REST API testing tools, e.g. Postman, by POSTing to `localhost:8080/generate-plan` using the example payload below.
+If the port number was replaced, use that instead.
 
 ### Background
 
