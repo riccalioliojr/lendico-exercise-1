@@ -5,7 +5,7 @@
 1. Clone the repository.
 2. Using the command line, go inside the directory of the repository.
 3. Execute `mvn clean spring-boot:run`. If port 8080 is in use, replace the port number in `application.yml`.
-4. Test using any REST API testing tools, e.g. Postman, by POSTing to `localhost:8080/generate-plan` using the example payload below.
+4. Test using any REST API testing tools, e.g. cURL or Postman, by POSTing to `localhost:8080/generate-plan` using the example payload below.
 If the port number was replaced, use that instead.
 
 ### Background
@@ -13,10 +13,10 @@ If the port number was replaced, use that instead.
 In order to inform borrowers about the final repayment schedule, we need to have pre-calculated repayment plans throughout the lifetime of a loan.
 
 To be able to calculate a repayment plan specific input parameters are necessary:
-• duration (number of instalments in months)
-• nominal interest rate
-• total loan amount ("total principal amount")
-• date of disbursement/payout
+* duration (number of instalments in months)
+* nominal interest rate
+* total loan amount ("total principal amount")
+* date of disbursement/payout
 
 These four parameters need to be input parameters. The goal is to calculate a repayment plan for an annuity loan. Therefore the amount that
 the borrower has to pay back every month, consisting of principal and interest repayments, does not change (the last instalment might be an exception).
@@ -242,4 +242,4 @@ take initial initial outstanding principal amount instead.)
         "remainingOutstandingPrincipal": 0
     }
 ]
-``
+```
