@@ -1,6 +1,6 @@
 package me.riccalioliojr.apps.model;
 
-import me.riccalioliojr.apps.domain.PaymentPlan;
+import me.riccalioliojr.apps.domain.PaymentPerMonth;
 
 import java.math.BigDecimal;
 
@@ -12,13 +12,13 @@ public class Response {
     private BigDecimal principal;
     private BigDecimal remainingOutstandingPrincipal;
 
-    public Response(final PaymentPlan paymentPlan) {
-        this.borrowerPaymentAmount = paymentPlan.getBorrowerPaymentAmount();
-        this.date = paymentPlan.getDate();
-        this.initialOutstandingPrincipal = paymentPlan.getInitialOutstandingPrincipal();
-        this.interest = paymentPlan.getInterest();
-        this.principal = paymentPlan.getPrincipal();
-        this.remainingOutstandingPrincipal = paymentPlan.getRemainingOutstandingPrincipal();
+    public Response(final PaymentPerMonth paymentPerMonth) {
+        this.borrowerPaymentAmount = paymentPerMonth.getBorrowerPaymentAmount();
+        this.date = paymentPerMonth.getDate();
+        this.initialOutstandingPrincipal = paymentPerMonth.getInitialOutstandingPrincipal();
+        this.interest = paymentPerMonth.getInterest();
+        this.principal = paymentPerMonth.getPrincipal();
+        this.remainingOutstandingPrincipal = paymentPerMonth.getRemainingOutstandingPrincipal();
     }
 
     public BigDecimal getBorrowerPaymentAmount() {

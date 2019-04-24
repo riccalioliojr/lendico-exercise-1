@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
-public class PaymentPlan {
+public class PaymentPerMonth {
     private BigDecimal borrowerPaymentAmount;
     private String date;
     private BigDecimal initialOutstandingPrincipal;
@@ -15,7 +15,7 @@ public class PaymentPlan {
     private BigDecimal principal;
     private BigDecimal remainingOutstandingPrincipal;
 
-    public PaymentPlan(final Request request) {
+    public PaymentPerMonth(final Request request) {
         this.borrowerPaymentAmount = roundOff(calculateBorrowerPaymentAmount(request));
         this.date = generatePaymentDate(request.getStartDate());
         this.initialOutstandingPrincipal = roundOff(request.getLoanAmount());
@@ -24,11 +24,11 @@ public class PaymentPlan {
         this.remainingOutstandingPrincipal = roundOff(this.initialOutstandingPrincipal.subtract(this.principal));
     }
 
-    public PaymentPlan(final Request request, final PaymentPlan previousPaymentPlan, final int counter) {
-        this.initialOutstandingPrincipal = roundOff(previousPaymentPlan.getRemainingOutstandingPrincipal());
+    public PaymentPerMonth(final Request request, final PaymentPerMonth previousPaymentPerMonth, final int counter) {
+        this.initialOutstandingPrincipal = roundOff(previousPaymentPerMonth.getRemainingOutstandingPrincipal());
         this.date = generatePaymentDate(request.getStartDate(), counter);
         this.interest = roundOff(calculateInterest(BigDecimal.valueOf(request.getNominalRate())));
-        this.principal = roundOff(calculatePrincipal(previousPaymentPlan.getBorrowerPaymentAmount()));
+        this.principal = roundOff(calculatePrincipal(previousPaymentPerMonth.getBorrowerPaymentAmount()));
         this.borrowerPaymentAmount = roundOff(this.principal.add(this.interest));
         this.remainingOutstandingPrincipal = roundOff(this.initialOutstandingPrincipal.subtract(this.principal));
     }

@@ -1,6 +1,6 @@
 package me.riccalioliojr.apps.service;
 
-import me.riccalioliojr.apps.domain.PaymentPlan;
+import me.riccalioliojr.apps.domain.PaymentPerMonth;
 import me.riccalioliojr.apps.model.Request;
 import me.riccalioliojr.apps.model.Response;
 import org.springframework.stereotype.Service;
@@ -13,31 +13,40 @@ public class PaymentPlanGeneratorService {
 
     public List<Response> generatePaymentPlan(final Request request) {
         request.validate();
-        final List<PaymentPlan> paymentPlanList = generatePaymentPlanList(request);
-        return generateResponseList(paymentPlanList);
+        final List<PaymentPerMonth> paymentPerMonthList = generatePaymentPlanList(request);
+        return generateResponseList(paymentPerMonthList);
     }
 
-    private List<PaymentPlan> generatePaymentPlanList(final Request request) {
+    private List<PaymentPerMonth> generatePaymentPlanList(final Request request) {
 
-        final List<PaymentPlan> paymentPlanList = new ArrayList<>();
+        final List<PaymentPerMonth> paymentPerMonthList = new ArrayList<>();
+        paymentPerMonthList.add(firstMonth(request));
+        paymentPerMonthList.addAll(remainingMonths(request, paymentPerMonthList.get(0)));
+        return paymentPerMonthList;
+    }
 
-        PaymentPlan paymentPlan = new PaymentPlan(request);
-        paymentPlanList.add(paymentPlan);
+    private List<PaymentPerMonth> remainingMonths(final Request request, PaymentPerMonth previousPaymentPerMonth) {
+
+        final List<PaymentPerMonth> paymentPerMonthList = new ArrayList<>();
 
         for (int counter = 1; counter < request.getDuration(); counter++) {
-            paymentPlan = new PaymentPlan(request, paymentPlan, counter);
-            paymentPlanList.add(paymentPlan);
+            previousPaymentPerMonth = new PaymentPerMonth(request, previousPaymentPerMonth, counter);
+            paymentPerMonthList.add(previousPaymentPerMonth);
         }
 
-        return paymentPlanList;
+        return paymentPerMonthList;
     }
 
-    private List<Response> generateResponseList(final List<PaymentPlan> paymentPlanList) {
+    private PaymentPerMonth firstMonth(final Request request) {
+        return new PaymentPerMonth(request);
+    }
+
+    private List<Response> generateResponseList(final List<PaymentPerMonth> paymentPerMonthList) {
 
         final List<Response> responseList = new ArrayList<>();
 
-        for (final PaymentPlan paymentPlan : paymentPlanList) {
-            final Response response = new Response(paymentPlan);
+        for (final PaymentPerMonth paymentPerMonth : paymentPerMonthList) {
+            final Response response = new Response(paymentPerMonth);
             responseList.add(response);
         }
 
